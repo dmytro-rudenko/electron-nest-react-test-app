@@ -5,8 +5,9 @@ import { UserService } from '../services/user.service';
 const AddUser: React.FC = () => {
   const addUser = async () => {
     try {
-      const response = await UserService.addUser(userData);
-      console.log('User added:', response.data);
+      const data = await UserService.addUser(userData);
+      console.log('User added:', data);
+      alert('User added!')
     } catch (error) {
       console.error('Error adding user:', error);
     }

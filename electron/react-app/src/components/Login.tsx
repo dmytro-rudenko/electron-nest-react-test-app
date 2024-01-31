@@ -14,8 +14,8 @@ const Login: React.FC = () => {
 
   const login = async () => {
     try {
-      const response = await AuthService.login(loginData);
-      const { access_token } = response.data;
+      const data = await AuthService.login(loginData);
+      const { access_token } = data;
       setToken(access_token);
       console.log('Login successful!');
     } catch (error) {
@@ -33,9 +33,9 @@ const Login: React.FC = () => {
 
   const getUser = async (userId: number) => {
     try {
-      const response = await UserService.getUser(userId, token as string);
-      console.log('User retrieved:', response.data);
-      setUserData(response.data);
+      const data = await UserService.getUser(userId, token as string);
+      console.log('User retrieved:', data);
+      setUserData(data);
     } catch (error) {
       console.error('Error getting user:', error);
       alert("Error getting user!")
