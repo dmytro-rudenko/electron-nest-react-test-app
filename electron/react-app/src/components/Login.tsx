@@ -1,6 +1,7 @@
 // src/components/About.tsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 const Login: React.FC = () => {
   const [loginData, setLoginData] = useState({
@@ -13,7 +14,7 @@ const Login: React.FC = () => {
 
   const login = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/login', loginData);
+      const response = await AuthService.login(loginData);
       const { access_token } = response.data;
       setToken(access_token);
       console.log('Login successful!');
@@ -32,11 +33,7 @@ const Login: React.FC = () => {
 
   const getUser = async (userId: number) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/get-user/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await UserService.getUser(userId, token as string);
       console.log('User retrieved:', response.data);
       setUserData(response.data);
     } catch (error) {

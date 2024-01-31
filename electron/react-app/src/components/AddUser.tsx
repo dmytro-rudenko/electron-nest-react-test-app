@@ -1,11 +1,11 @@
 // src/components/Home.tsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import { UserService } from '../services/user.service';
 
 const AddUser: React.FC = () => {
   const addUser = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/add-user', userData);
+      const response = await UserService.addUser(userData);
       console.log('User added:', response.data);
     } catch (error) {
       console.error('Error adding user:', error);
