@@ -29,7 +29,7 @@ const AddUser: React.FC = () => {
     <div>
       <h2>Add User</h2>
       <label>
-        Name:
+        Username:
         <input type="text" name="username" onChange={handleInputChange} />
       </label>
       <br />
